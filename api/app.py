@@ -1,17 +1,17 @@
 
 
-# from modules.extract_features import extract_features
-
-# from modules.extract_features import extract_features
-#from modules.extract_features import extract_features
 from flask import Flask, jsonify, request, abort
 import sys
 import os
 import pickle
 import pandas as pd
+import logging
 
 sys.path.append(os.path.abspath(os.path.join('..')))
+
 from modules.feature_engineering import feature_engineering
+from modules.fetch_domain_info import get_domain_info
+
 app = Flask(__name__)
 
 
@@ -24,8 +24,10 @@ def classify():
     model = load_model()
 
     features = feature_engineering(url)
-    input_data = pd.DataFrame([features])
-    print(input_data)
+    domain_info = get_domain_info(url)
+    print(f"Domain info: {domain_info}")
+    input_data = pd.DataFrame([domain_info, features])
+
     prediction = model.predict(input_data)
     probability = model.predict_proba(input_data)
     return jsonify({'prediction': {
@@ -42,11 +44,6 @@ def prediction_result(prediction) -> str:
         return 'malware'
     else:
         return 'phishing'
-
-
-def extract_features_from_url(url):
-    features = extract_features(url)
-    return features
 
 
 def load_model():

@@ -7,8 +7,9 @@ import os
 from tqdm import tqdm
 import logging
 from multiprocessing import Pool
-sys.path.append(os.path.abspath(os.path.join('..')))
-from modules.fetch_domain_info import get_domain_info
+from fetch_domain_info import get_domain_info
+# sys.path.append(os.path.abspath(os.path.join('..')))
+# from modules.fetch_domain_info import get_domain_info
 domains: dict[str, dict[str, int]] = {}
 
 
