@@ -1,0 +1,11 @@
+python-dotenv
+flask
+scikit-learn
+tqdm
+pandas
+tld
+python-whois
+google-genai
+
+
+
