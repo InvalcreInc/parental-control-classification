@@ -7,6 +7,7 @@ import re
 import sys
 import os
 from tld import get_tld, get_fld
+#from tldextract import extract
 
 
 sys.path.append(os.path.abspath(os.path.join('..')))
@@ -21,26 +22,22 @@ def feature_engineering(url: str):
     components = get_url_components(url)
     domain = components['domain']
     path = components['path']
-    query = components['query']
     tld = components['tld']
-
-    # domain info
-    # domain_info = get_domain_info(domain)
-    # features['domain_age'] = domain_info['domain_age']
-    # features['domain_status'] = domain_info['status']
 
     #
     features['shortening_service'] = shortening_service(url)
-    features['file_extension'] = get_ext(path)
+    features['file_extension'] = get_ext(url, path)
     features['domain_entropy'] = entropy(domain)
 
+    features['digits_count'] = digits_count(url)
+    features['queries_count'] = query_counts(url)
     features['special_characters_count'] = special_characters_count(url)
-    features['suspicious_query'] = contains_suspicious_query(query)
+    features['suspicious_query'] = contains_suspicious_query(url)
     features['is_common_tld'] = is_common_tld(tld)
 
     features['domain_length'] = len(domain if domain else '')
     features['url_length'] = len(url)
-    features['is_https'] = is_https(url)
+    # features['is_https'] = is_https(url)
     features['is_http'] = is_http(url)
     features['sensitive_words'] = contains_sensitive_words(url)
     return features
@@ -53,8 +50,7 @@ def clean_url(url: str) -> str:
 
 
 def get_url_components(url: str):
-    domain: str = ''
-    query: str = ''
+    domain: str = url
     path: str = ''
     tld: str = ''
     try:
@@ -63,25 +59,23 @@ def get_url_components(url: str):
         parsed_url = res.parsed_url
         domain = parsed_url.netloc
         path = parsed_url.path
-        query = parsed_url.query
         tld = res.tld
     except:
         pass
     return {
         'domain': domain,
         'path': path,
-        'query': query,
         'tld': tld
     }
 
 
 def special_characters_count(url: str) -> int:
-    pattern = r'[@%=+&#]|%[0-9A-Fa-f]{2}'
+    pattern = r'[@%$*=+&#_]|%[0-9A-Fa-f]{2}'
     special_characters = re.findall(pattern, url)
     return len(special_characters)
 
 
-def is_common_tld(tld) -> int:
+def is_common_tld(tld: str | None, url: str) -> int:
     '''
     Checks if the tld is a common tld e.g com
     '''
@@ -108,6 +102,20 @@ def contains_sensitive_words(url: str) -> int:
     return words
 
 
+#def extract_tld(url: str) -> str:
+#    extracted = extract(url)
+#    return extracted.suffix
+
+
+def digits_count(url: str) -> int:
+    return len(re.findall(r'\d', url))
+
+
+def query_counts(url: str) -> int:
+    query_string = urlparse(url).query
+    return len([param for param in query_string.split('&') if param])
+
+
 def contains_suspicious_query(queries: str) -> int:
     if not queries:
         return 0
@@ -128,17 +136,17 @@ def is_http(url: str) -> int:
     return 1 if 'http://' in url else 0
 
 
-def entropy(url: str) -> float:
+def entropy(domain: str) -> float:
     '''
     Calculates the entropy of a url
     - URLs with high entropy are significant indicators of malicious behavior
     - where H(x) is the Shannon entropy of string x, b is the base of the logarithm used, and p(x) is the probability mass function.
     source: https://www.mdpi.com/1099-4300/23/2/182
     '''
-    if not url:
+    if not domain:
         return 0
-    length = len(url) if url else 0
-    counts = Counter(url)
+    length = len(domain) if domain else 0
+    counts = Counter(domain)
     return -sum((count/length) * math.log2(count/length)
                 for count in counts.values())
 
@@ -155,8 +163,11 @@ def shortening_service(url) -> int:
     return 0
 
 
-def get_ext(path) -> int:
-    root, ext = splitext(path)
+def get_ext(url, path: str | None) -> int:
+    if not path:
+        parsed_url = urlparse(url)
+        path = parsed_url.path
+    _, ext = splitext(path)
     ext = ext[1:].lower() if ext else ''
     return categorize_file_ext(ext)
 
@@ -168,7 +179,7 @@ def categorize_file_ext(ext: str) -> int:
     web = ['html', 'htm', 'php', 'asp', 'js', 'css', 'aspx', 'json', 'xml']
     archive = ['zip', 'rar', 'tar', 'gz', '7z']
     executables = {'exe', 'bat', 'cmd', 'sh', 'msi', 'scr', 'vbs', 'pif', 'com', 'ps1',
-                   'app', 'jar', 'py', 'dll', 'lnk'}
+                   'app', 'jar', 'py', 'dll', 'lnk', 'bin'}
     ext = ext.lower().strip()
     if not ext:
         return 0
@@ -186,5 +197,6 @@ def categorize_file_ext(ext: str) -> int:
         return 6
 
 
-# print(get_domain_info(
-#    'https://x.com'))
+if __name__ == '__main__':
+    print(feature_engineering("https://bobkingsley.co.uk/blog/?p=159"))
+    print(feature_engineering("bobkingsley.co.uk/blog/?p=159&id=1&account=2"))

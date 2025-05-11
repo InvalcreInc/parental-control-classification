@@ -70,11 +70,19 @@ def process_row(row) -> dict[str, int]:
     try:
         url = row[1]['url']
         url_type = row[1]['type']
+        domain_age = row[1]['domain_age']
+        domain_status = row[1]['domain_status']
+        if domain_age != 0 and domain_status != 0:
+            return {
+                'domain_age': domain_age,
+                'domain_status': domain_status
+            }
+        #
         domain = get_domain(url)
         if not domain or not url_type:
             raise ValueError("Invalid domain")
         if domain not in domains:
-            if pd.isna(url_type) or url_type != "benign":
+            if pd.isna(url_type):  # or url_type != "benign"
                 domains[domain] = {
                     "domain_age": 0,
                     "domain_status": 0
@@ -93,5 +101,5 @@ def process_row(row) -> dict[str, int]:
 
 
 if __name__ == '__main__':
-    process_whois_data('../data/malicious_phish.csv',
-                       'malicious_phish_domain.csv')
+    process_whois_data('../data/mp_normalised_data.csv',
+                       'mp_malicious_normalised.csv')
