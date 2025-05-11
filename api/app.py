@@ -1,12 +1,19 @@
+
 from flask import Flask, jsonify, request, abort
 import sys
 import os
 import pickle
 import pandas as pd
 import logging
+from urllib.parse import urlparse
+from os.path import splitext
+from transcribe_audio import transcribe_audio
+from extract_pdf import read_remote_pdf
+from gemini import classify_content
+from json import JSONEncoder
+from scrapper import get_page_content
 
 sys.path.append(os.path.abspath(os.path.join('..')))
-
 
 from modules.feature_engineering import feature_engineering
 from modules.fetch_domain_info import get_domain_info
@@ -20,6 +27,57 @@ def classify():
     url = data.get('url')
     if url is None:
         abort(400)
+    url_ext = get_ext(url)
+    texts = None
+    if url_ext:
+   
+        exe_file = executable_files_result(url_ext)
+        if exe_file:
+            return jsonify(exe_file), 200
+        elif is_audio(url_ext):
+            texts = transcribe_audio(url)
+        elif url_ext == 'pdf':
+            texts = read_remote_pdf(url)
+
+    if not texts:
+        texts = get_page_content(url)
+        
+    res = None   
+    if texts:
+        content = JSONEncoder().encode(texts)
+        res = classify_content(content)
+
+    if not res:
+        res = classify_url(url)
+    return jsonify(res), 200
+
+
+def executable_files_result(ext):
+    executables = {'exe', 'bat', 'cmd', 'sh', 'msi', 'scr', 'vbs', 'pif', 'com', 'ps1',
+                   'app', 'jar', 'py', 'dll', 'lnk', 'bin'}
+    if ext not in executables:
+        return None
+    return {
+        'classification': 'unsafe',
+        'confidence': 1,
+        'details': 'Executable file detected',
+        'reasons': ['executable']
+    }
+
+
+def get_ext(url):
+    parsed_url = urlparse(url)
+    path = parsed_url.path
+    _, ext = splitext(path)
+    ext = ext[1:].lower() if ext else None
+    return ext
+
+
+def is_audio(ext):
+    return ext in ['mp3', 'wav', 'aac', 'ogg', 'flac']
+
+
+def classify_url(url):
     model = load_model()
 
     features = feature_engineering(url)
@@ -29,8 +87,7 @@ def classify():
 
     prediction = model.predict(input_data)
     probability = model.predict_proba(input_data)
-    res = prediction_result(int(prediction[0]), probability)
-    return jsonify(res), 200
+    return prediction_result(int(prediction[0]), probability)
 
 
 def prediction_result(prediction, probability):

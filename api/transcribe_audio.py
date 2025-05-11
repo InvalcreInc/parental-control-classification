@@ -4,16 +4,27 @@ from requests import get
 from pydub import AudioSegment
 
 
-def transcribe_audio(url, max_tokens=1000, duration=2) -> str | None:
+def transcribe_audio(url, max_tokens=1000, duration=120) -> dict | None:
+    '''
+    Transcribes an audio file from a remote url
+     - returns a dictionary of type, content, metadata
+    '''
     try:
         audio_data = download_audio(url)
         r = sr.Recognizer()
         audio_file = sr.AudioFile(audio_data)
         with audio_file as source:
-            r.adjust_for_ambient_noise()
+            r.adjust_for_ambient_noise(source)
             audio = r.record(source, duration=duration)
-        text = sr.recognize_google(audio)
-        return text[:max_tokens]
+        text = r.recognize_google(audio)
+        return {
+            "type": "audio",
+            "content": text[:max_tokens],
+            "metadata": {
+                "duration": duration,
+                "url": url
+            }
+        }
     except Exception as e:
         print(e)
         return None

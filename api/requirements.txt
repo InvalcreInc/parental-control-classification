@@ -9,5 +9,6 @@ google-genai
 PyPDF2
 SpeechRecognition
 pydub
+selenium
 
 
