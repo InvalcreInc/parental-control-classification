@@ -75,7 +75,7 @@ def special_characters_count(url: str) -> int:
     return len(special_characters)
 
 
-def is_common_tld(tld: str | None, url: str) -> int:
+def is_common_tld(tld: str | None) -> int:
     '''
     Checks if the tld is a common tld e.g com
     '''
