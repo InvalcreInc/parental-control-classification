@@ -2,6 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join('..')))
+from modules.extract_url_components import  normalise_url
 
 def get_page_content(url: str, max_tokens=1000):
     '''
@@ -9,6 +13,7 @@ def get_page_content(url: str, max_tokens=1000):
      - returns a dictionary of type, content, metadata
     '''
     try:
+        url = normalise_url(url)
         browser = init_browser(url)
         wait = WebDriverWait(browser, 10)
         body = wait.until(
@@ -21,12 +26,6 @@ def get_page_content(url: str, max_tokens=1000):
         except:
             pass
 
-        try:
-            keywords = wait.until(
-                EC.presence_of_element_located((By.XPATH, "//meta[@name='keywords']"))).get_attribute("content")
-        except:
-            keywords = None
-
         content = {
             "type": "webpage",
             "content": body[:max_tokens],
@@ -34,8 +33,6 @@ def get_page_content(url: str, max_tokens=1000):
                 "title": browser.title,
                 "url": url,
                 "description": description[:int(max_tokens/2)] if description else '',
-                "keywords": keywords if keywords else '',
-
             }
         }
         browser.close()
@@ -62,5 +59,6 @@ def init_browser(url: str) -> webdriver.Chrome:
 
 
 if __name__ == "__main__":
-    print(get_page_content("https://www.mdpi.com/1099-4300/23/2/182"))
-    print(get_page_content("https://nextjs.org/"))
+    print(get_page_content("http://www.mdpi.com/1099-4300/23/2/182"))
+    print(get_page_content("http://nextjs.org/"))
+    print(get_page_content("google.com"))

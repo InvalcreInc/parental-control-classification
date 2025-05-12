@@ -17,9 +17,9 @@ sys.path.append(os.path.abspath(os.path.join('..')))
 
 from modules.feature_engineering import feature_engineering
 from modules.fetch_domain_info import get_domain_info
+from modules.extract_url_components import get_ext, normalise_url
 
 app = Flask(__name__)
-
 
 @app.route('/api/classify', methods=['POST'])
 def classify():
@@ -41,12 +41,10 @@ def classify():
 
     if not texts:
         texts = get_page_content(url)
-        
     res = None   
     if texts:
         content = JSONEncoder().encode(texts)
         res = classify_content(content)
-
     if not res:
         res = classify_url(url)
     return jsonify(res), 200
@@ -64,13 +62,6 @@ def executable_files_result(ext):
         'reasons': ['executable']
     }
 
-
-def get_ext(url):
-    parsed_url = urlparse(url)
-    path = parsed_url.path
-    _, ext = splitext(path)
-    ext = ext[1:].lower() if ext else None
-    return ext
 
 
 def is_audio(ext):
