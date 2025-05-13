@@ -1,44 +1,43 @@
 from collections import Counter
 import csv
 import math
-from os.path import splitext
-from urllib.parse import urlparse
 import re
 import sys
 import os
-from tld import get_tld, get_fld
-#from tldextract import extract
+from urllib.parse import  parse_qs
+import random
+# from tldextract import extract
 
 
 sys.path.append(os.path.abspath(os.path.join('..')))
+from modules.extract_url_components import get_url_components
 
-
-def feature_engineering(url: str):
+def feature_engineering(url: str, is_https: bool | None = None):
     '''
     This function takes a url as input and returns a dictionary of features
     '''
     features = {}
     url = clean_url(url)
-    components = get_url_components(url)
-    domain = components['domain']
-    path = components['path']
-    tld = components['tld']
+    components = get_url_components(url, is_https)
 
     #
     features['shortening_service'] = shortening_service(url)
-    features['file_extension'] = get_ext(url, path)
-    features['domain_entropy'] = entropy(domain)
+    features['file_extension'] = categorize_file_ext(
+        components.file_extension)
+    features['domain_entropy'] = entropy(components.domain)
+    features['redirects'] = 1 if components.has_redirect else 0
+
+    features['subdomains_count'] = subdomains_count(components.subdomain)
 
     features['digits_count'] = digits_count(url)
-    features['queries_count'] = query_counts(url)
+    features['queries_count'] = query_counts(components.query)
     features['special_characters_count'] = special_characters_count(url)
-    features['suspicious_query'] = contains_suspicious_query(url)
-    features['is_common_tld'] = is_common_tld(tld)
+    features['suspicious_query'] = contains_suspicious_query(components.query)
+    features['is_common_tld'] = is_common_tld(components.tld)
 
-    features['domain_length'] = len(domain if domain else '')
+    features['domain_length'] = len(components.domain)
     features['url_length'] = len(url)
-    # features['is_https'] = is_https(url)
-    features['is_http'] = is_http(url)
+    features['is_https'] = 1 if components.is_https else 0
     features['sensitive_words'] = contains_sensitive_words(url)
     return features
 
@@ -49,28 +48,11 @@ def clean_url(url: str) -> str:
     return url.lower()
 
 
-def get_url_components(url: str):
-    domain: str = url
-    path: str = ''
-    tld: str = ''
-    try:
-        res = get_tld(url, fail_silently=True,
-                      fix_protocol=True, as_object=True)
-        parsed_url = res.parsed_url
-        domain = parsed_url.netloc
-        path = parsed_url.path
-        tld = res.tld
-    except:
-        pass
-    return {
-        'domain': domain,
-        'path': path,
-        'tld': tld
-    }
-
+def subdomains_count(subdomain_url: str) -> int:
+    return len(subdomain_url.split('.'))
 
 def special_characters_count(url: str) -> int:
-    pattern = r'[@%$*=+&#_]|%[0-9A-Fa-f]{2}'
+    pattern = r'[@%$*=+&-#_]|%[0-9A-Fa-f]{2}'
     special_characters = re.findall(pattern, url)
     return len(special_characters)
 
@@ -102,18 +84,19 @@ def contains_sensitive_words(url: str) -> int:
     return words
 
 
-#def extract_tld(url: str) -> str:
-#    extracted = extract(url)
-#    return extracted.suffix
-
-
 def digits_count(url: str) -> int:
+    '''
+    Counts the number of digits in a url
+    '''
     return len(re.findall(r'\d', url))
 
 
-def query_counts(url: str) -> int:
-    query_string = urlparse(url).query
-    return len([param for param in query_string.split('&') if param])
+def query_counts(query_str: str) -> int:
+    '''
+    Counts the number of queries in a url.
+    - Malicious URLs contain more queries
+    '''
+    return len(parse_qs(query_str).keys())
 
 
 def contains_suspicious_query(queries: str) -> int:
@@ -163,15 +146,6 @@ def shortening_service(url) -> int:
     return 0
 
 
-def get_ext(url, path: str | None) -> int:
-    if not path:
-        parsed_url = urlparse(url)
-        path = parsed_url.path
-    _, ext = splitext(path)
-    ext = ext[1:].lower() if ext else ''
-    return categorize_file_ext(ext)
-
-
 def categorize_file_ext(ext: str) -> int:
     media = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff',
              'mp4', 'avi', 'mov', 'wmv', 'mp3', 'wav', 'aac']
@@ -198,5 +172,16 @@ def categorize_file_ext(ext: str) -> int:
 
 
 if __name__ == '__main__':
-    print(feature_engineering("https://bobkingsley.co.uk/blog/?p=159"))
-    print(feature_engineering("bobkingsley.co.uk/blog/?p=159&id=1&account=2"))
+    
+    with open("../data/mp_malicious_normalised.csv", 'r') as f:
+        reader = csv.reader(f)
+        next(reader)
+        count = 0
+        for row in reader:
+            if random.random() <0.55:
+                continue
+            url = row[0]
+            print(url,feature_engineering(url))
+            count += 1
+            if count > 100:
+                break
