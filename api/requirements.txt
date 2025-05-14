@@ -6,6 +6,10 @@ pandas
 tld
 python-whois
 google-genai
+PyPDF2
+SpeechRecognition
+pydub
+selenium
 
 
 
