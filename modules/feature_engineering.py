@@ -1,10 +1,11 @@
+
 from collections import Counter
 import csv
 import math
 import re
 import sys
 import os
-from urllib.parse import  parse_qs
+from urllib.parse import parse_qs
 import random
 # from tldextract import extract
 
@@ -48,11 +49,15 @@ def clean_url(url: str) -> str:
     return url.lower()
 
 
-def subdomains_count(subdomain_url: str) -> int:
-    return len(subdomain_url.split('.'))
+def subdomains_count(subdomains: str) -> int:
+    if not subdomains:
+        return 0
+    subdomains_parts = subdomains.strip().split('.')
+    return len(subdomains_parts)
+
 
 def special_characters_count(url: str) -> int:
-    pattern = r'[@%$*=+&-#_]|%[0-9A-Fa-f]{2}'
+    pattern = r'[@%$*=+&#_-]|%[0-9A-Fa-f]{2}'
     special_characters = re.findall(pattern, url)
     return len(special_characters)
 
@@ -172,16 +177,15 @@ def categorize_file_ext(ext: str) -> int:
 
 
 if __name__ == '__main__':
-    
     with open("../data/mp_malicious_normalised.csv", 'r') as f:
         reader = csv.reader(f)
         next(reader)
         count = 0
         for row in reader:
-            if random.random() <0.55:
+            if random.random() < 0.55:
                 continue
             url = row[0]
-            print(url,feature_engineering(url))
+            print(url, feature_engineering(url))
             count += 1
-            if count > 100:
+            if count > 10:
                 break

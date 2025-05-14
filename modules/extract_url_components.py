@@ -83,6 +83,7 @@ def get_url_components(url: str, is_https: bool | None = None):
         components.set_scheme(comps['scheme'])
         components.set_query(comps['query'])
         components.set_path(comps['path'])
+        components.set_subdomain(comps['subdomain'])
         pass
     redirect = check_redirect(components.query)
     components.set_redirect(redirect)
@@ -94,20 +95,40 @@ def use_url_parser(url):
     query: str = ''
     params: str = ''
     path: str = ''
+    netloc: str = ''
     try:
         parsed_url = urlparse(url)
+        netloc = parsed_url.netloc
         scheme = parsed_url.scheme
         query = parsed_url.query
         params = parsed_url.params
         path = parsed_url.path
     except:
         pass
+    subdomain = get_subdomain(url, netloc)
     return {
         'scheme': scheme,
         'query': query,
         'params': params,
-        'path': path
+        'path': path,
+        'subdomain': subdomain
     }
+
+
+def get_subdomain(url: str, netloc: str | None):
+    '''
+    Use urlparse to get the subdomain
+    '''
+    try:
+        if not netloc:
+            url = normalise_url(url)
+            netloc = urlparse(url).netloc
+        domain_parts = netloc.split('.')
+        if len(domain_parts) > 2:
+            return '.'.join(domain_parts[:-2])
+    except:
+        pass
+    return ''
 
 
 def get_ext(url, path: str | None = None) -> str:

@@ -101,7 +101,7 @@ def prediction_result(prediction, probability):
 
 def load_model():
     model = pickle.load(
-        open('../reports/random_forest_classifier_mn.pkl', 'rb'))
+        open('../reports/phishing_classifier.pkl', 'rb'))
     return model
 
 
