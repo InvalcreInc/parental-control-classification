@@ -43,6 +43,7 @@ def classify():
         texts = get_page_content(url)
     res = None   
     if texts:
+        print(texts)
         content = JSONEncoder().encode(texts)
         res = classify_content(content)
     if not res:

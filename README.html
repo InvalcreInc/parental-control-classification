@@ -1,0 +1,350 @@
+<!DOCTYPE html><html><head>
+      <title>README</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/gm/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:////Users/gm/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/mermaid/mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="classification-of-internet-resources-including-websites-for-the-purpose-of-constructing-the-parental-control-systems-to-counteract-access-to-unwanted-information">Classification of Internet resources, including websites, for the purpose of constructing the parental control systems to counteract access to unwanted information. </h1>
+<p>Parental control systems are essential tools for safeguarding children from harmful online content by classifying and filtering internet resources, such as websites, audio files, and PDFs. These systems enable parents to monitor and restrict access to inappropriate or malicious content, ensuring a safe digital environment. This paper focuses on an anti-phishing and content classification system that leverages a custom machine learning model and natural language processing (NLP) via the Google Gemini API to categorize internet resources for parental control applications.</p>
+<p>Our approach combines phishing detection with content analysis to identify malicious URLs and classify non-malicious content (web pages, PDFs, audio) for appropriateness. We developed a Flask API that processes URLs, checks for phishing risks, extracts content based on file extensions, and uses Gemini for NLP-based classification. This system supports parental control by flagging phishing threats and categorizing content to prevent exposure to unwanted material, such as explicit or harmful texts.</p>
+<h2 id="system-architecture">System Architecture </h2>
+<p>The system operates through a Flask API that handles URL classification in a multi-step workflow, as shown in the diagram below:</p>
+<div class="mermaid">graph TD
+    A[Client e.g Postman] --&gt;|POST URL| S[Flask API]
+	S--&gt;|Classification response| A
+    S --&gt;|Check URL Safety| P[Anti-Phishing Classifier]
+    P --&gt;|Fetch Domain Info| C{Is URL Phishing?}
+    C --&gt;|Yes, Return Phishing | R[Response]
+	R --&gt; |Classification Response| S
+    C --&gt;|No| D[Extract Content]
+    D --&gt;|Scrape Webpage| E[Selenium Scraper: Web Content]
+    D --&gt;|Extract PDF| F[PDF Reader: Text Content]
+    D --&gt;|Transcribe Audio| G[Audio Transcriber: Text Content]
+    E --&gt; H[Gemini API: NLP Classification]
+    F --&gt; H
+    G --&gt; H
+    H --&gt;|Classification Result| I{Is Content Classified?}
+    I --&gt;|Yes, return classification response|R
+    I --&gt;|No, return error| R
+</div><h2 id="2-flask-api-implementation">2 Flask API Implementation </h2>
+<p>The Flask API integrates several scripts:</p>
+<ul>
+<li>
+<p>Selenium Web Scraper: Extracts text from webpages, handling dynamic content.</p>
+</li>
+<li>
+<p>PDF Reader: Used PyPDF2 to extract text from PDF files.</p>
+</li>
+<li>
+<p>Audio Transcriber: Employs speech_recognition library to transcribe audio files.</p>
+</li>
+</ul>
+<p>Gemini API: Performs NLP-based classification of extracted text, identifying categories relevant to parental controls (e.g., safe, explicit, gambling).</p>
+<p>The API was tested using Postman, with results visualized in the following screenshots:</p>
+<table>
+<thead>
+<tr>
+<th>Anti-Phishing Classification</th>
+<th>Audio Content Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="reports/screenshots/image-3.png" alt="antiphishing classifier in postman"></td>
+<td><img src="reports/screenshots/image.png" alt="audio content classification in postman"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Web Scraping and Classification</th>
+<th>PDF Content Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="reports/screenshots/image-4.png" alt="website scrapping and classification in postman"></td>
+<td><img src="reports/screenshots/image-5.png" alt="pdf content classification"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Gambling Website Classification</th>
+<th>Additional Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="reports/screenshots/image-6.png" alt="gambling website content classificatio"></td>
+<td><img src="reports/screenshots/image-2.png" alt="alt text"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-anti-phishing-classifier">3 Anti-Phishing classifier </h2>
+<p>The anti-phishing classifier is a critical component, as phishing URLs pose significant risks to children by directing them to malicious sites. We trained our model using the Malicious URLs dataset from Kaggle [1], which contains 651,191 URLs: 428,103 benign, 96,457 defacement, 94,111 phishing, and 32,520 malware URLs. To manage computational resources, we used 20% of the dataset (130,238 URLs) and enriched it with domain features.</p>
+<h3 id="31-dataset-and-feature-engineering">3.1 Dataset and Feature Engineering </h3>
+<p>We fetched domain information using WHOIS queries to add:</p>
+<ul>
+<li>
+<p>Domain Age: Number of days since domain registration, as newer domains are often malicious [2].</p>
+</li>
+<li>
+<p>Domain Status: Categorized based on registration status (e.g., active, expired), indicating reliability.</p>
+</li>
+</ul>
+<p>Additional features were derived from URL characteristics, including:</p>
+<ul>
+<li>Domain Name Entropy: Calculated using Shannon’s entropy formula to measure randomness in domain names, as malicious URLs often have higher entropy [3]:</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>p</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>b</mi></msub><mi>p</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(X) = -\sum_{i=1}^{n} p(x_i) \log_b p(x_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.242em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<ul>
+<li>Other Features: Included URL length, special character count, and subdomain presence, which are effective for phishing detection [4].</li>
+</ul>
+<h3 id="32-the-class-distribution-and-feature-importance-are-visualized-below">3.2 The class distribution and feature importance are visualized below: </h3>
+<h4 id="321-class-distribution">3.2.1 Class Distribution </h4>
+<p><img src="reports/charts/class_distribution.png" alt="class distribution"></p>
+<h4 id="322-mean-domain-entropy-by-type">3.2.2 Mean Domain Entropy by Type </h4>
+<p><img src="reports/charts/mean_domain_entropy.png" alt="domain name entropy mean by type"></p>
+<h4 id="323-other-features-mean-by-type">3.2.3 Other Features Mean by Type </h4>
+<p>The following mean bar charts illustrate several important features that can aid in phishing detection, categorized by URL type.</p>
+<p><img src="reports/charts/other_features_mean_charts.png" alt="other features mean by type"></p>
+<h3 id="33-model-training-and-evaluation">3.3 Model Training and Evaluation </h3>
+<p>We implemented two classifiers: Random Forest and XGBoost, both suitable for multi-class classification of URLs (benign, defacement, phishing, malware) [3]. The dataset was split 80:20 for training and testing, with performance evaluated using accuracy, precision, recall, and F1-score.</p>
+<h4 id="331-random-forest-classifier">3.3.1 Random Forest Classifier </h4>
+<ul>
+<li><strong>Accuracy</strong>: 0.9291</li>
+</ul>
+<h5 id="classification-report"><strong>Classification Report:</strong> </h5>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1-Score</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Benign</td>
+<td>0.93</td>
+<td>0.98</td>
+<td>0.95</td>
+<td>18260</td>
+</tr>
+<tr>
+<td>Defacement</td>
+<td>0.94</td>
+<td>0.94</td>
+<td>0.94</td>
+<td>5854</td>
+</tr>
+<tr>
+<td>Phishing</td>
+<td>0.90</td>
+<td>0.76</td>
+<td>0.82</td>
+<td>5761</td>
+</tr>
+<tr>
+<td>Malware</td>
+<td>0.98</td>
+<td>0.91</td>
+<td>0.95</td>
+<td>1984</td>
+</tr>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td></td>
+<td></td>
+<td><strong>0.93</strong></td>
+<td><strong>31859</strong></td>
+</tr>
+<tr>
+<td><strong>Macro Avg</strong></td>
+<td>0.94</td>
+<td>0.90</td>
+<td>0.92</td>
+<td>31859</td>
+</tr>
+<tr>
+<td><strong>Weighted Avg</strong></td>
+<td>0.93</td>
+<td>0.93</td>
+<td>0.93</td>
+<td>31859</td>
+</tr>
+</tbody>
+</table>
+<p><img src="reports/charts/rf_confusion_matrix.png" alt="rf confusion matrix"></p>
+<h4 id="332-xgboost-classifier">3.3.2 XGBoost Classifier </h4>
+<ul>
+<li><strong>Accuracy</strong>: 0.9304</li>
+</ul>
+<h5 id="classification-report-1"><strong>Classification Report:</strong> </h5>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1-Score</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Benign</td>
+<td>0.94</td>
+<td>0.97</td>
+<td>0.95</td>
+<td>18260</td>
+</tr>
+<tr>
+<td>Defacement</td>
+<td>0.94</td>
+<td>0.95</td>
+<td>0.95</td>
+<td>5854</td>
+</tr>
+<tr>
+<td>Phishing</td>
+<td>0.87</td>
+<td>0.79</td>
+<td>0.83</td>
+<td>5761</td>
+</tr>
+<tr>
+<td>Malware</td>
+<td>0.97</td>
+<td>0.93</td>
+<td>0.95</td>
+<td>1984</td>
+</tr>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td></td>
+<td></td>
+<td><strong>0.93</strong></td>
+<td><strong>31859</strong></td>
+</tr>
+<tr>
+<td><strong>Macro Avg</strong></td>
+<td>0.93</td>
+<td>0.91</td>
+<td>0.92</td>
+<td>31859</td>
+</tr>
+<tr>
+<td><strong>Weighted Avg</strong></td>
+<td>0.93</td>
+<td>0.93</td>
+<td>0.93</td>
+<td>31859</td>
+</tr>
+</tbody>
+</table>
+<p><img src="reports/charts/xgboost_confusion_matrix.png" alt="xgboost confusion matrix"></p>
+<h3 id="34-analysis">3.4 Analysis </h3>
+<p>Both classifiers achieved high accuracy (~93%), with XGBoost slightly outperforming Random Forest (0.9304 vs. 0.9291). XGBoost showed better recall for phishing URLs (0.79 vs. 0.76), critical for parental control to minimize false negatives (missed phishing sites). The high entropy of phishing and malware URLs, as shown in Figure 2, was a key discriminative feature, consistent with findings in [3]. However, phishing URLs had lower recall, indicating challenges in detecting subtle phishing patterns, which could be addressed with additional features or models [4].</p>
+<h2 id="4-next-steps">4. Next Steps </h2>
+<p>To enhance the system for parental control applications, we propose:</p>
+<ul>
+<li>
+<p>Custom NLP Model: Develop a tailored NLP model for granular content classification (e.g., violence, explicit language), reducing reliance on the Gemini API and improving latency.</p>
+</li>
+<li>
+<p>Image and Video Classification: Extend the system to classify images and videos, common in harmful content, using convolutional neural networks (CNNs) [5].</p>
+</li>
+<li>
+<p>Text Document Support: Add support for other text formats (e.g., .docx, .txt) to broaden content coverage.</p>
+</li>
+<li>
+<p>Model Optimization: Optimize Random Forest and XGBoost for faster inference (e.g., feature selection, model pruning) to reduce API latency.</p>
+</li>
+<li>
+<p>Real-Time Monitoring: Implement a browser extension integrating the API for real-time URL and content filtering, enhancing usability for parents.</p>
+</li>
+</ul>
+<h2 id="conclusion">conclusion </h2>
+<h2 id="conclusion-1">Conclusion </h2>
+<p>This paper presents a robust system for classifying internet resources to enhance parental control systems, effectively counteracting access to unwanted and malicious content. By integrating a custom anti-phishing classifier with NLP-based content analysis via the Google Gemini API, our Flask API successfully identifies phishing URLs and categorizes web pages, PDFs, and audio content for appropriateness. The anti-phishing classifier, trained on a subset of the Malicious URLs dataset [1], achieved high accuracy (~93%) using Random Forest and XGBoost, with features like domain entropy proving critical for detecting malicious URLs [3, 4]. The Gemini API further enabled granular classification of extracted content, supporting parental control goals by flagging harmful material.</p>
+<h2 id="references">references </h2>
+<ol>
+<li><a href="https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset/data">Malicious URLs dataset</a></li>
+<li><a href="https://www.mdpi.com/1099-4300/23/2/182">Malicious URL Detection Based on Associative Classification</a></li>
+<li><a href="https://www.isecure-journal.com/article_159689_889aebb80d0e4b48c23526d76f52bd9e.pdf">Feature-based Malicious URL and Attack Type Detection Using Multi-class Classification</a></li>
+<li><a href="https://librivox.org/on-chronic-alcoholic-intoxication-by-william-marcet/">librivox</a></li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>
