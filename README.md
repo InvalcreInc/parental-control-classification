@@ -73,6 +73,7 @@ where
 - $y_n$ is the label of the $n$-th document
 
 The probability of a correct label given a text is computed using the softmax function:
+
 \[
 P(y|x) = \frac{\exp(w*y \cdot x)}{\sum*{k} \exp(w_k \cdot x)}
 \]
