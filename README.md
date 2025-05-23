@@ -74,7 +74,7 @@ where
 
 The probability of a correct label given a text is computed using the softmax function:
 
-$$P(y|x) = \frac{\exp(w*y \cdot x)}{\sum*{k} \exp(w_k \cdot x)}$$
+$$ P(y|x) = \frac{\exp(w*y \cdot x)}{\sum*{k} \exp(w_k \cdot x)} $$
 
 where \( x \) is the text vector, \( w_y \) is the weight vector for label \( y \), and the denominator normalizes over all labels [2]. We used bigrams (`wordNgrams=2`), as they capture word order effectively, allowing reconstruction of sentence structure from n-gram sequences [2]. This enhances classification accuracy for short, context-dependent texts common in online content.
 
