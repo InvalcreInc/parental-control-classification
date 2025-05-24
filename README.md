@@ -62,7 +62,7 @@ Natural Language Processing (NLP) is critical for analyzing and classifying text
 
 FastText represents text and labels as vectors, training a linear classifier to align text vectors with their corresponding label vectors (e.g., safe or toxic). The actual model fastText implements is rather simple as we can see in the image below:
 
-$$ - \frac{1}{N} \sum\_{n=1}^{N} y_n \log(f(BAd_n)) $$
+$$ - \frac{1}{N} \sum\ y_n \log(f(BAd_n)) $$
 
 where
 
